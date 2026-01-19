@@ -1,0 +1,11 @@
+/* Global reset - minimal since App.css handles most styling */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
