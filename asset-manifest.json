@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.js": "/static/js/main.aba9be3c.js",
-    "index.html": "/index.html",
-    "main.aba9be3c.js.map": "/static/js/main.aba9be3c.js.map"
+    "main.js": "/mobile-auto/static/js/main.aba9be3c.js",
+    "index.html": "/mobile-auto/index.html",
+    "main.aba9be3c.js.map": "/mobile-auto/static/js/main.aba9be3c.js.map"
   },
   "entrypoints": [
     "static/js/main.aba9be3c.js"
