@@ -72,15 +72,15 @@ const App = () => {
 
     try {
       await emailjs.send(
-        'service_tbacej5',    // Replace with your EmailJS service ID
-        'template_nez4yhe',   // Replace with your EmailJS template ID
+        'service_tbacej5',
+        'template_nez4yhe',
         {
           title: `Service Request - ${formData.services.join(' & ')}`,
           name: formData.name,
           email: formData.email,
           message: `Services: ${formData.services.join(', ')}\nCar: ${formData.carInfo}\n\n${formData.notes || 'No additional notes'}`,
         },
-        'GHYpKQWsbmKq2il51'     // Replace with your EmailJS public key
+        'GHYpKQWsbmKq2il51' 
       );
       setStatus('success');
       setFormData({ name: '', email: '', carInfo: '', notes: '', services: [] });
@@ -204,7 +204,6 @@ const App = () => {
           <ContactContent>
             <ContactInfo>
               <ServiceArea>Serving the Greater Charlotte Area</ServiceArea>
-              <Hours>Weekday Evenings & Weekends</Hours>
               <Phone>
                 <span>Call or Text:</span>
                 <a href="tel:2019930466">(201) 993-0466</a>
