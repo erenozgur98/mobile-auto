@@ -1,194 +1,197 @@
 import React from 'react';
+import {
+  GlobalStyles,
+  Root,
+  Nav,
+  NavContainer,
+  Logo,
+  NavLinks,
+  Hero,
+  HeroContent,
+  ButtonGroup,
+  BtnPrimary,
+  Container,
+  ServicesSection,
+  SectionTitle,
+  ServicesGrid,
+  ServiceCard,
+  Pricing,
+  WhyUsSection,
+  BenefitsGrid,
+  Benefit,
+  HowItWorksSection,
+  Steps,
+  Step,
+  StepNumber,
+  ContactSection,
+  ContactContent,
+  ContactInfo,
+  ServiceArea,
+  Hours,
+  Phone,
+  ContactForm,
+  FormGroup,
+  FormLabel,
+  FormInput,
+  FormTextarea,
+  SubmitButton,
+  Footer,
+} from './styles';
 
 const App = () => {
   return (
-    <div style={{ fontFamily: "'Inter', -apple-system, sans-serif", background: '#ffffff', color: '#1f2937', minHeight: '100vh' }}>
-      <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        
-        .nav { position: fixed; top: 0; left: 0; right: 0; background: #ffffff; border-bottom: 1px solid #e5e7eb; z-index: 100; }
-        .nav-container { max-width: 1100px; margin: 0 auto; padding: 1rem 1.5rem; display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-weight: 700; font-size: 1.125rem; color: #6b21a8; }
-        .nav-links { display: flex; gap: 2rem; }
-        .nav-links a { color: #4b5563; text-decoration: none; font-weight: 500; font-size: 0.95rem; }
-        .nav-links a:hover { color: #6b21a8; }
-        
-        .hero { padding: 8rem 1.5rem 5rem; text-align: center; background: linear-gradient(180deg, #f3e8ff 0%, #ffffff 100%); }
-        .hero-content { max-width: 600px; margin: 0 auto; }
-        .hero h1 { font-size: 2.5rem; font-weight: 700; color: #1f2937; margin-bottom: 1rem; }
-        .hero p { font-size: 1.125rem; color: #6b7280; margin-bottom: 2rem; }
-        
-        .btn-primary { display: inline-block; padding: 0.875rem 2rem; background: #6b21a8; color: #ffffff; text-decoration: none; font-weight: 600; border-radius: 8px; }
-        .btn-primary:hover { background: #581c87; }
-        
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
-        
-        .services { padding: 5rem 0; }
-        h2 { text-align: center; font-size: 1.75rem; font-weight: 700; margin-bottom: 2.5rem; color: #1f2937; }
-        
-        .service-card { max-width: 500px; margin: 0 auto; padding: 2rem; background: #f9fafb; border-radius: 12px; border: 1px solid #e5e7eb; }
-        .service-card h3 { font-size: 1.25rem; font-weight: 600; margin-bottom: 1.25rem; color: #1f2937; }
-        .service-card ul { list-style: none; margin-bottom: 1.5rem; }
-        .service-card li { padding: 0.5rem 0; padding-left: 1.5rem; position: relative; color: #4b5563; }
-        .service-card li::before { content: "✓"; position: absolute; left: 0; color: #0d9488; font-weight: 600; }
-        .pricing { font-weight: 600; color: #6b21a8; font-size: 1.1rem; }
-        
-        .why-us { padding: 5rem 0; background: #fafafa; }
-        .benefits-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; }
-        .benefit { padding: 1.5rem; background: #ffffff; border-radius: 10px; border: 1px solid #e5e7eb; }
-        .benefit h3 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; color: #1f2937; }
-        .benefit p { color: #6b7280; font-size: 0.95rem; }
-        
-        .how-it-works { padding: 5rem 0; }
-        .steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
-        .step { text-align: center; }
-        .step-number { display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; background: #6b21a8; color: #ffffff; border-radius: 50%; font-weight: 700; font-size: 1.125rem; margin-bottom: 1rem; }
-        .step h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.25rem; color: #1f2937; }
-        .step p { font-size: 0.875rem; color: #6b7280; }
-        
-        .contact { padding: 5rem 0; background: #fafafa; }
-        .contact-content { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center; max-width: 800px; margin: 0 auto; }
-        .contact-info { text-align: center; }
-        .service-area { font-weight: 600; color: #1f2937; margin-bottom: 0.25rem; }
-        .hours { color: #6b7280; margin-bottom: 1.5rem; }
-        .phone { margin-bottom: 1.5rem; }
-        .phone span { display: block; color: #6b7280; font-size: 0.9rem; margin-bottom: 0.25rem; }
-        .phone a { font-size: 1.5rem; font-weight: 700; color: #6b21a8; text-decoration: none; }
-        
-        .qr-section { text-align: center; }
-        .qr-placeholder { width: 160px; height: 160px; margin: 0 auto 1rem; background: #ffffff; border: 2px dashed #d1d5db; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #9ca3af; font-size: 0.9rem; }
-        .qr-section p { color: #6b7280; font-size: 0.875rem; }
-        
-        .footer { padding: 2rem 1.5rem; text-align: center; border-top: 1px solid #e5e7eb; }
-        .footer p { color: #9ca3af; font-size: 0.875rem; }
-      `}</style>
+    <Root>
+      <GlobalStyles />
 
-      {/* Navigation */}
-      <nav className="nav">
-        <div className="nav-container">
-          <div className="logo">YOUR LOGO</div>
-          <div className="nav-links">
+      <Nav>
+        <NavContainer>
+          <Logo>Mobile Auto Services</Logo>
+          <NavLinks>
             <a href="#services">Services</a>
             <a href="#why-us">Why Us</a>
             <a href="#contact">Contact</a>
-          </div>
-        </div>
-      </nav>
+          </NavLinks>
+        </NavContainer>
+      </Nav>
 
-      {/* Hero */}
-      <section className="hero">
-        <div className="hero-content">
-          <h1>Mobile Oil Change</h1>
-          <p>We come to you. At home, at work, wherever you are.</p>
-          <a href="#contact" className="btn-primary">Schedule Now</a>
-        </div>
-      </section>
+      <Hero>
+        <HeroContent>
+          <h1>Mobile Auto Services</h1>
+          <p>Oil changes and auto detailing — we come to you. At home, at work, wherever you are.</p>
+          <ButtonGroup>
+            <BtnPrimary href="tel:2019930466">Call to Schedule</BtnPrimary>
+            <BtnPrimary href="mailto:contact@mobileautoservices.com">Email to Schedule</BtnPrimary>
+          </ButtonGroup>
+        </HeroContent>
+      </Hero>
 
-      {/* Services */}
-      <section id="services" className="services">
-        <div className="container">
-          <h2>What We Offer</h2>
-          <div className="service-card">
-            <h3>Full Service Oil Change</h3>
-            <ul>
-              <li>Conventional or synthetic oil</li>
-              <li>New oil filter</li>
-              <li>Fluid level check & top-off</li>
-              <li>Tire pressure check</li>
-              <li>Visual inspection</li>
-            </ul>
-            <p className="pricing">Call for Quote</p>
-          </div>
-        </div>
-      </section>
+      <ServicesSection id="services">
+        <Container>
+          <SectionTitle>What We Offer</SectionTitle>
+          <ServicesGrid>
+            <ServiceCard>
+              <h3>Mobile Oil Change</h3>
+              <ul>
+                <li>Conventional or synthetic oil</li>
+                <li>New oil filter</li>
+                <li>Fluid level check & top-off</li>
+                <li>Tire pressure check</li>
+                <li>Visual inspection</li>
+              </ul>
+              <Pricing>Call for Quote</Pricing>
+            </ServiceCard>
+            <ServiceCard>
+              <h3>Mobile Auto Detailing</h3>
+              <ul>
+                <li>Exterior wash & wax</li>
+                <li>Interior vacuuming & wipe down</li>
+                <li>Dashboard & console cleaning</li>
+                <li>Window cleaning inside & out</li>
+                <li>Full detail packages available</li>
+              </ul>
+              <Pricing>Call for Quote</Pricing>
+            </ServiceCard>
+          </ServicesGrid>
+        </Container>
+      </ServicesSection>
 
-      {/* Why Us */}
-      <section id="why-us" className="why-us">
-        <div className="container">
-          <h2>Why Choose Us</h2>
-          <div className="benefits-grid">
-            <div className="benefit">
+      <WhyUsSection id="why-us">
+        <Container>
+          <SectionTitle>Why Choose Us</SectionTitle>
+          <BenefitsGrid>
+            <Benefit>
               <h3>Save Time</h3>
-              <p>No waiting rooms. Keep doing what you're doing while we handle the oil change.</p>
-            </div>
-            <div className="benefit">
+              <p>No waiting rooms. Keep doing what you're doing while we take care of your car.</p>
+            </Benefit>
+            <Benefit>
               <h3>We Come to You</h3>
               <p>Home, office, gym — wherever is convenient for you.</p>
-            </div>
-            <div className="benefit">
+            </Benefit>
+            <Benefit>
               <h3>Quality Service</h3>
               <p>Professional service with quality products.</p>
-            </div>
-            <div className="benefit">
+            </Benefit>
+            <Benefit>
               <h3>Simple & Easy</h3>
               <p>Just call or text to schedule. No hassle.</p>
-            </div>
-          </div>
-        </div>
-      </section>
+            </Benefit>
+          </BenefitsGrid>
+        </Container>
+      </WhyUsSection>
 
-      {/* How It Works */}
-      <section className="how-it-works">
-        <div className="container">
-          <h2>How It Works</h2>
-          <div className="steps">
-            <div className="step">
-              <span className="step-number">1</span>
+      <HowItWorksSection>
+        <Container>
+          <SectionTitle>How It Works</SectionTitle>
+          <Steps>
+            <Step>
+              <StepNumber>1</StepNumber>
               <h3>Schedule</h3>
               <p>Call or text to book</p>
-            </div>
-            <div className="step">
-              <span className="step-number">2</span>
+            </Step>
+            <Step>
+              <StepNumber>2</StepNumber>
               <h3>We Arrive</h3>
               <p>At your location</p>
-            </div>
-            <div className="step">
-              <span className="step-number">3</span>
+            </Step>
+            <Step>
+              <StepNumber>3</StepNumber>
               <h3>We Work</h3>
               <p>You relax</p>
-            </div>
-            <div className="step">
-              <span className="step-number">4</span>
+            </Step>
+            <Step>
+              <StepNumber>4</StepNumber>
               <h3>Done</h3>
               <p>Back on the road</p>
-            </div>
-          </div>
-        </div>
-      </section>
+            </Step>
+          </Steps>
+        </Container>
+      </HowItWorksSection>
 
-      {/* Contact */}
-      <section id="contact" className="contact">
-        <div className="container">
-          <h2>Get In Touch</h2>
-          <div className="contact-content">
-            <div className="contact-info">
-              <p className="service-area">Serving the Greater Charlotte Area</p>
-              <p className="hours">Weekday Evenings & Weekends</p>
-              <div className="phone">
+      <ContactSection id="contact">
+        <Container>
+          <SectionTitle>Get In Touch</SectionTitle>
+          <ContactContent>
+            <ContactInfo>
+              <ServiceArea>Serving the Greater Charlotte Area</ServiceArea>
+              <Hours>Weekday Evenings & Weekends</Hours>
+              <Phone>
                 <span>Call or Text:</span>
-                <a href="tel:5551234567">(555) 123-4567</a>
-              </div>
-              <a href="tel:5551234567" className="btn-primary">Call to Schedule</a>
-            </div>
-            <div className="qr-section">
-              <div className="qr-placeholder">
-                <span>QR Code</span>
-              </div>
-              <p>Scan to contact</p>
-            </div>
-          </div>
-        </div>
-      </section>
+                <a href="tel:2019930466">(201) 993-0466</a>
+              </Phone>
+              <ButtonGroup>
+                <BtnPrimary href="tel:2019930466">Call to Schedule</BtnPrimary>
+                <BtnPrimary href="mailto:yigiterenozgur@outlook.com">Email to Schedule</BtnPrimary>
+              </ButtonGroup>
+            </ContactInfo>
+            <ContactForm>
+              <FormGroup>
+                <FormLabel>Name</FormLabel>
+                <FormInput type="text" placeholder="Your name" />
+              </FormGroup>
+              <FormGroup>
+                <FormLabel>Email</FormLabel>
+                <FormInput type="email" placeholder="your@email.com" />
+              </FormGroup>
+              <FormGroup>
+                <FormLabel>Car Info</FormLabel>
+                <FormInput type="text" placeholder="Year, Make, Model (e.g. 2020 Honda Civic)" />
+              </FormGroup>
+              <FormGroup>
+                <FormLabel>Notes</FormLabel>
+                <FormTextarea placeholder="Any additional details or questions..." />
+              </FormGroup>
+              <SubmitButton type="submit">Send Request</SubmitButton>
+            </ContactForm>
+          </ContactContent>
+        </Container>
+      </ContactSection>
 
-      {/* Footer */}
-      <footer className="footer">
-        <div className="container">
-          <p>© {new Date().getFullYear()} Your Business Name. All rights reserved.</p>
-        </div>
-      </footer>
-    </div>
+      <Footer>
+        {/* <Container>
+          <p>© {new Date().getFullYear()} Mobile Auto Services. All rights reserved.</p>
+        </Container> */}
+      </Footer>
+    </Root>
   );
 };
 
