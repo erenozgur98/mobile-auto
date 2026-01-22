@@ -224,7 +224,7 @@ export const Pricing = styled('p')({
 });
 
 export const WhyUsSection = styled('section')({
-  padding: '5rem 0',
+  padding: '1rem 0',
 });
 
 export const BenefitsGrid = styled('div')({
@@ -251,7 +251,7 @@ export const Benefit = styled('div')({
 });
 
 export const HowItWorksSection = styled('section')({
-  padding: '5rem 0',
+  padding: '1rem 0',
 });
 
 export const Steps = styled('div')({
@@ -289,7 +289,7 @@ export const StepNumber = styled('span')({
 });
 
 export const ContactSection = styled('section')({
-  padding: '5rem 0',
+  padding: '1rem 0',
 });
 
 export const ContactContent = styled('div')({
