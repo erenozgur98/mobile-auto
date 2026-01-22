@@ -1,6 +1,7 @@
 {
   "name": "mobile-auto",
   "version": "0.1.0",
+  "homepage": "https://erenozgur98.github.io/mobile-auto",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.14.0",
