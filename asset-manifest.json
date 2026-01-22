@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/mobile-auto/static/js/main.95e424ca.js",
+    "main.js": "/mobile-auto/static/js/main.6ed302bb.js",
     "index.html": "/mobile-auto/index.html",
-    "main.95e424ca.js.map": "/mobile-auto/static/js/main.95e424ca.js.map"
+    "main.6ed302bb.js.map": "/mobile-auto/static/js/main.6ed302bb.js.map"
   },
   "entrypoints": [
-    "static/js/main.95e424ca.js"
+    "static/js/main.6ed302bb.js"
   ]
 }
