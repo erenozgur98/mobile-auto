@@ -16,6 +16,9 @@ import {
   SectionTitle,
   ServicesGrid,
   ServiceCard,
+  ServiceCardHeader,
+  ServiceCardContent,
+  ExpandButton,
   Pricing,
   WhyUsSection,
   BenefitsGrid,
@@ -28,7 +31,6 @@ import {
   ContactContent,
   ContactInfo,
   ServiceArea,
-  Hours,
   Phone,
   ContactForm,
   FormGroup,
@@ -37,6 +39,11 @@ import {
   FormTextarea,
   SubmitButton,
   Footer,
+  ServiceCheckboxGroup,
+  ServiceCheckboxLabel,
+  ServiceCheckbox,
+  ErrorText,
+  SuccessText,
 } from './styles';
 
 const App = () => {
@@ -49,6 +56,8 @@ const App = () => {
   });
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   const [serviceError, setServiceError] = useState(false);
+  const [expandedOil, setExpandedOil] = useState(false);
+  const [expandedDetail, setExpandedDetail] = useState(false);
 
   const toggleService = (service: string) => {
     setServiceError(false);
@@ -121,26 +130,36 @@ const App = () => {
           <SectionTitle>What We Offer</SectionTitle>
           <ServicesGrid>
             <ServiceCard>
-              <h3>Mobile Oil Change</h3>
-              <ul>
-                <li>Conventional or synthetic oil</li>
-                <li>New oil filter</li>
-                <li>Fluid level check & top-off</li>
-                <li>Tire pressure check</li>
-                <li>Visual inspection</li>
-              </ul>
-              <Pricing>Call for Quote</Pricing>
+              <ServiceCardHeader onClick={() => setExpandedOil(!expandedOil)}>
+                <h3>Mobile Oil Change</h3>
+                <ExpandButton $expanded={expandedOil}>+</ExpandButton>
+              </ServiceCardHeader>
+              <ServiceCardContent $expanded={expandedOil}>
+                <ul>
+                  <li>Conventional or synthetic oil</li>
+                  <li>New oil filter</li>
+                  <li>Fluid level check & top-off</li>
+                  <li>Tire pressure check</li>
+                  <li>Visual inspection</li>
+                </ul>
+                <Pricing>Call for Quote</Pricing>
+              </ServiceCardContent>
             </ServiceCard>
             <ServiceCard>
-              <h3>Mobile Auto Detailing</h3>
-              <ul>
-                <li>Exterior wash & wax</li>
-                <li>Interior vacuuming & wipe down</li>
-                <li>Dashboard & console cleaning</li>
-                <li>Window cleaning inside & out</li>
-                <li>Full detail packages available</li>
-              </ul>
-              <Pricing>Call for Quote</Pricing>
+              <ServiceCardHeader onClick={() => setExpandedDetail(!expandedDetail)}>
+                <h3>Mobile Auto Detailing</h3>
+                <ExpandButton $expanded={expandedDetail}>+</ExpandButton>
+              </ServiceCardHeader>
+              <ServiceCardContent $expanded={expandedDetail}>
+                <ul>
+                  <li>Exterior wash & wax</li>
+                  <li>Interior vacuuming & wipe down</li>
+                  <li>Dashboard & console cleaning</li>
+                  <li>Window cleaning inside & out</li>
+                  <li>Full detail packages available</li>
+                </ul>
+                <Pricing>Call for Quote</Pricing>
+              </ServiceCardContent>
             </ServiceCard>
           </ServicesGrid>
         </Container>
@@ -216,45 +235,25 @@ const App = () => {
             <ContactForm onSubmit={handleSubmit}>
               <FormGroup>
                 <FormLabel>Service(s) Needed *</FormLabel>
-                <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
-                  <label style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '0.5rem',
-                    padding: '0.75rem 1rem',
-                    border: formData.services.includes('Oil Change') ? '2px solid #6b21a8' : '1px solid #d1d5db',
-                    borderRadius: 8,
-                    cursor: 'pointer',
-                    background: formData.services.includes('Oil Change') ? '#f3e8ff' : '#fff',
-                  }}>
-                    <input
+                <ServiceCheckboxGroup>
+                  <ServiceCheckboxLabel $selected={formData.services.includes('Oil Change')}>
+                    <ServiceCheckbox
                       type="checkbox"
                       checked={formData.services.includes('Oil Change')}
                       onChange={() => toggleService('Oil Change')}
-                      style={{ width: 18, height: 18, accentColor: '#6b21a8' }}
                     />
                     Oil Change
-                  </label>
-                  <label style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '0.5rem',
-                    padding: '0.75rem 1rem',
-                    border: formData.services.includes('Car Detailing') ? '2px solid #6b21a8' : '1px solid #d1d5db',
-                    borderRadius: 8,
-                    cursor: 'pointer',
-                    background: formData.services.includes('Car Detailing') ? '#f3e8ff' : '#fff',
-                  }}>
-                    <input
+                  </ServiceCheckboxLabel>
+                  <ServiceCheckboxLabel $selected={formData.services.includes('Car Detailing')}>
+                    <ServiceCheckbox
                       type="checkbox"
                       checked={formData.services.includes('Car Detailing')}
                       onChange={() => toggleService('Car Detailing')}
-                      style={{ width: 18, height: 18, accentColor: '#6b21a8' }}
                     />
-                    Car Detailing
-                  </label>
-                </div>
-                {serviceError && <p style={{ color: '#dc2626', marginTop: '0.5rem', fontSize: '0.875rem' }}>Please select at least one service</p>}
+                    Detailing
+                  </ServiceCheckboxLabel>
+                </ServiceCheckboxGroup>
+                {serviceError && <ErrorText>Please select at least one service</ErrorText>}
               </FormGroup>
               <FormGroup>
                 <FormLabel>Name</FormLabel>
@@ -297,8 +296,8 @@ const App = () => {
               <SubmitButton type="submit" disabled={status === 'sending'}>
                 {status === 'sending' ? 'Sending...' : 'Send Request'}
               </SubmitButton>
-              {status === 'success' && <p style={{ color: '#0d9488', marginTop: '0.5rem' }}>Message sent successfully!</p>}
-              {status === 'error' && <p style={{ color: '#dc2626', marginTop: '0.5rem' }}>Failed to send. Please try again.</p>}
+              {status === 'success' && <SuccessText>Message sent successfully!</SuccessText>}
+              {status === 'error' && <ErrorText>Failed to send. Please try again.</ErrorText>}
             </ContactForm>
           </ContactContent>
         </Container>

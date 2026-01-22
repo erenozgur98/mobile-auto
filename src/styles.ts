@@ -3,14 +3,21 @@ import { styled } from '@mui/material/styles';
 export const GlobalStyles = styled('style')`
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
+  html, body, #root {
+    scroll-behavior: smooth;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
 `;
 
 export const Root = styled('div')({
   fontFamily: "'Inter', -apple-system, sans-serif",
-  background: '#ffffff',
+  background: 'linear-gradient(180deg, #f3e8ff 0%, #faf5ff 50%, #ffffff 100%)',
   color: '#1f2937',
   minHeight: '100vh',
+  width: '100%',
+  overflowX: 'hidden',
 });
 
 export const Nav = styled('nav')({
@@ -46,8 +53,15 @@ export const NavLinks = styled('div')({
     textDecoration: 'none',
     fontWeight: 500,
     fontSize: '0.95rem',
+    whiteSpace: 'nowrap',
     '&:hover': {
       color: '#6b21a8',
+    },
+  },
+  '@media (max-width: 480px)': {
+    gap: '1rem',
+    '& a': {
+      fontSize: '0.85rem',
     },
   },
 });
@@ -55,7 +69,6 @@ export const NavLinks = styled('div')({
 export const Hero = styled('section')({
   padding: '8rem 1.5rem 5rem',
   textAlign: 'center',
-  background: 'linear-gradient(180deg, #f3e8ff 0%, #ffffff 100%)',
 });
 
 export const HeroContent = styled('div')({
@@ -129,22 +142,62 @@ export const ServicesGrid = styled('div')({
   display: 'grid',
   gridTemplateColumns: 'repeat(2, 1fr)',
   gap: '2rem',
+  alignItems: 'start',
   '@media (max-width: 768px)': {
     gridTemplateColumns: '1fr',
   },
 });
 
 export const ServiceCard = styled('div')({
-  padding: '2rem',
-  background: '#f9fafb',
+  background: 'rgba(255, 255, 255, 0.8)',
   borderRadius: 12,
   border: '1px solid #e5e7eb',
+  overflow: 'hidden',
+  height: 'fit-content',
+});
+
+export const ServiceCardHeader = styled('button')({
+  width: '100%',
+  padding: '1.5rem 2rem',
+  background: 'transparent',
+  border: 'none',
+  cursor: 'pointer',
+  display: 'flex',
+  justifyContent: 'space-between',
+  alignItems: 'center',
+  textAlign: 'left',
   '& h3': {
     fontSize: '1.25rem',
     fontWeight: 600,
-    marginBottom: '1.25rem',
     color: '#1f2937',
+    margin: 0,
   },
+  '&:hover': {
+    background: '#f3f4f6',
+  },
+});
+
+export const ExpandButton = styled('span')<{ $expanded: boolean }>(({ $expanded }) => ({
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  width: 28,
+  height: 28,
+  borderRadius: '50%',
+  background: '#6b21a8',
+  color: '#ffffff',
+  fontSize: '1.25rem',
+  fontWeight: 500,
+  transition: 'transform 0.2s ease',
+  transform: $expanded ? 'rotate(45deg)' : 'rotate(0deg)',
+}));
+
+export const ServiceCardContent = styled('div')<{ $expanded: boolean }>(({ $expanded }) => ({
+  padding: $expanded ? '0 2rem 2rem' : '0 2rem',
+  maxHeight: $expanded ? 500 : 0,
+  overflow: 'hidden',
+  transition: 'all 0.3s ease',
+  opacity: $expanded ? 1 : 0,
   '& ul': {
     listStyle: 'none',
     marginBottom: '1.5rem',
@@ -162,7 +215,7 @@ export const ServiceCard = styled('div')({
       fontWeight: 600,
     },
   },
-});
+}));
 
 export const Pricing = styled('p')({
   fontWeight: 600,
@@ -172,7 +225,6 @@ export const Pricing = styled('p')({
 
 export const WhyUsSection = styled('section')({
   padding: '5rem 0',
-  background: '#fafafa',
 });
 
 export const BenefitsGrid = styled('div')({
@@ -183,7 +235,7 @@ export const BenefitsGrid = styled('div')({
 
 export const Benefit = styled('div')({
   padding: '1.5rem',
-  background: '#ffffff',
+  background: 'rgba(255, 255, 255, 0.8)',
   borderRadius: 10,
   border: '1px solid #e5e7eb',
   '& h3': {
@@ -238,7 +290,6 @@ export const StepNumber = styled('span')({
 
 export const ContactSection = styled('section')({
   padding: '5rem 0',
-  background: '#fafafa',
 });
 
 export const ContactContent = styled('div')({
@@ -288,7 +339,7 @@ export const ContactForm = styled('form')({
   display: 'flex',
   flexDirection: 'column',
   gap: '1rem',
-  background: '#ffffff',
+  background: 'rgba(255, 255, 255, 0.9)',
   padding: '2rem',
   borderRadius: 12,
   border: '1px solid #e5e7eb',
@@ -356,4 +407,38 @@ export const Footer = styled('footer')({
     color: '#9ca3af',
     fontSize: '0.875rem',
   },
+});
+
+export const ServiceCheckboxGroup = styled('div')({
+  display: 'flex',
+  gap: '0.5rem'
+});
+
+export const ServiceCheckboxLabel = styled('label')<{ $selected: boolean }>(({ $selected }) => ({
+  display: 'flex',
+  alignItems: 'center',
+  gap: '0.4rem',
+  padding: '0.5rem 0.75rem',
+  border: $selected ? '2px solid #6b21a8' : '1px solid #d1d5db',
+  borderRadius: 8,
+  cursor: 'pointer',
+  background: $selected ? '#f3e8ff' : '#fff',
+  fontSize: '0.875rem',
+}));
+
+export const ServiceCheckbox = styled('input')({
+  width: 16,
+  height: 16,
+  accentColor: '#6b21a8',
+});
+
+export const ErrorText = styled('p')({
+  color: '#dc2626',
+  marginTop: '0.5rem',
+  fontSize: '0.875rem',
+});
+
+export const SuccessText = styled('p')({
+  color: '#0d9488',
+  marginTop: '0.5rem',
 });
