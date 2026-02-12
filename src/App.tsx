@@ -107,7 +107,7 @@ const App = () => {
 
       <Nav>
         <NavContainer>
-          <Logo>Mobile Auto Services</Logo>
+          <Logo>CLT Mobile Car Care</Logo>
           <NavLinks>
             <a href='#services'>Services</a>
             <a href='#why-us'>Why Us</a>
@@ -118,7 +118,7 @@ const App = () => {
 
       <Hero>
         <HeroContent>
-          <h1>Mobile Auto Services</h1>
+          <h1>CLT Mobile Car Care</h1>
           <p>
             Oil changes and auto detailing — we come to you. At home, at work,
             wherever you are.
