@@ -147,7 +147,6 @@ const App = () => {
                   <li>New Oil Filter</li>
                   <li>Visual inspection</li>
                   <li>Mess Free</li>
-                  <li>Mess Free</li>
                 </ul>
                 <Pricing>Call for Quote</Pricing>
               </ServiceCardContent>
