@@ -1,5 +1,5 @@
-import React, { useState, FormEvent } from 'react';
-import emailjs from '@emailjs/browser';
+import React, { useState, FormEvent } from 'react'
+import emailjs from '@emailjs/browser'
 import {
   GlobalStyles,
   Root,
@@ -44,7 +44,7 @@ import {
   ServiceCheckbox,
   ErrorText,
   SuccessText,
-} from './styles';
+} from './styles'
 
 const App = () => {
   const [formData, setFormData] = useState({
@@ -53,31 +53,33 @@ const App = () => {
     carInfo: '',
     notes: '',
     services: [] as string[],
-  });
-  const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
-  const [serviceError, setServiceError] = useState(false);
-  const [expandedOil, setExpandedOil] = useState(false);
-  const [expandedDetail, setExpandedDetail] = useState(false);
+  })
+  const [status, setStatus] = useState<
+    'idle' | 'sending' | 'success' | 'error'
+  >('idle')
+  const [serviceError, setServiceError] = useState(false)
+  const [expandedOil, setExpandedOil] = useState(false)
+  const [expandedDetail, setExpandedDetail] = useState(false)
 
   const toggleService = (service: string) => {
-    setServiceError(false);
-    setFormData(prev => ({
+    setServiceError(false)
+    setFormData((prev) => ({
       ...prev,
       services: prev.services.includes(service)
-        ? prev.services.filter(s => s !== service)
-        : [...prev.services, service]
-    }));
-  };
+        ? prev.services.filter((s) => s !== service)
+        : [...prev.services, service],
+    }))
+  }
 
   const handleSubmit = async (e: FormEvent) => {
-    e.preventDefault();
+    e.preventDefault()
 
     if (formData.services.length === 0) {
-      setServiceError(true);
-      return;
+      setServiceError(true)
+      return
     }
 
-    setStatus('sending');
+    setStatus('sending')
 
     try {
       await emailjs.send(
@@ -89,15 +91,15 @@ const App = () => {
           email: formData.email,
           message: `Services: ${formData.services.join(', ')}\nCar: ${formData.carInfo}\n\n${formData.notes || 'No additional notes'}`,
         },
-        'GHYpKQWsbmKq2il51' 
-      );
-      setStatus('success');
-      setFormData({ name: '', email: '', carInfo: '', notes: '', services: [] });
+        'GHYpKQWsbmKq2il51',
+      )
+      setStatus('success')
+      setFormData({ name: '', email: '', carInfo: '', notes: '', services: [] })
     } catch (error) {
-      console.error('Failed to send email:', error);
-      setStatus('error');
+      console.error('Failed to send email:', error)
+      setStatus('error')
     }
-  };
+  }
 
   return (
     <Root>
@@ -107,9 +109,9 @@ const App = () => {
         <NavContainer>
           <Logo>Mobile Auto Services</Logo>
           <NavLinks>
-            <a href="#services">Services</a>
-            <a href="#why-us">Why Us</a>
-            <a href="#contact">Contact</a>
+            <a href='#services'>Services</a>
+            <a href='#why-us'>Why Us</a>
+            <a href='#contact'>Contact</a>
           </NavLinks>
         </NavContainer>
       </Nav>
@@ -117,15 +119,20 @@ const App = () => {
       <Hero>
         <HeroContent>
           <h1>Mobile Auto Services</h1>
-          <p>Oil changes and auto detailing — we come to you. At home, at work, wherever you are.</p>
+          <p>
+            Oil changes and auto detailing — we come to you. At home, at work,
+            wherever you are.
+          </p>
           <ButtonGroup>
-            <BtnPrimary href="tel:2019930466">Call to Schedule</BtnPrimary>
-            <BtnPrimary href="mailto:cltmobilecarcare@gmail.com">Email to Schedule</BtnPrimary>
+            <BtnPrimary href='tel:2019930466'>Call to Schedule</BtnPrimary>
+            <BtnPrimary href='mailto:cltmobilecarcare@gmail.com'>
+              Email to Schedule
+            </BtnPrimary>
           </ButtonGroup>
         </HeroContent>
       </Hero>
 
-      <ServicesSection id="services">
+      <ServicesSection id='services'>
         <Container>
           <SectionTitle>What We Offer</SectionTitle>
           <ServicesGrid>
@@ -136,27 +143,30 @@ const App = () => {
               </ServiceCardHeader>
               <ServiceCardContent $expanded={expandedOil}>
                 <ul>
-                  <li>Conventional or synthetic oil</li>
-                  <li>New oil filter</li>
-                  <li>Fluid level check & top-off</li>
-                  <li>Tire pressure check</li>
+                  <li>Full Synthetic Oil</li>
+                  <li>New Oil Filter</li>
                   <li>Visual inspection</li>
+                  <li>Mess Free</li>
+                  <li>Mess Free</li>
                 </ul>
                 <Pricing>Call for Quote</Pricing>
               </ServiceCardContent>
             </ServiceCard>
             <ServiceCard>
-              <ServiceCardHeader onClick={() => setExpandedDetail(!expandedDetail)}>
+              <ServiceCardHeader
+                onClick={() => setExpandedDetail(!expandedDetail)}
+              >
                 <h3>Mobile Auto Detailing</h3>
                 <ExpandButton $expanded={expandedDetail}>+</ExpandButton>
               </ServiceCardHeader>
               <ServiceCardContent $expanded={expandedDetail}>
                 <ul>
-                  <li>Exterior wash & wax</li>
-                  <li>Interior vacuuming & wipe down</li>
-                  <li>Dashboard & console cleaning</li>
-                  <li>Window cleaning inside & out</li>
-                  <li>Full detail packages available</li>
+                  <li>Exterior Wash</li>
+                  <li>Vacuuming & Wipe Down</li>
+                  <li>Steam Cleaning</li>
+                  <li>Carpet Shampooing</li>
+                  <li>Seat Extraction</li>
+                  <li>Detail packages available</li>
                 </ul>
                 <Pricing>Call for Quote</Pricing>
               </ServiceCardContent>
@@ -165,13 +175,16 @@ const App = () => {
         </Container>
       </ServicesSection>
 
-      <WhyUsSection id="why-us">
+      <WhyUsSection id='why-us'>
         <Container>
           <SectionTitle>Why Choose Us</SectionTitle>
           <BenefitsGrid>
             <Benefit>
               <h3>Save Time</h3>
-              <p>No waiting rooms. Keep doing what you're doing while we take care of your car.</p>
+              <p>
+                No waiting rooms. Keep doing what you're doing while we take
+                care of your car.
+              </p>
             </Benefit>
             <Benefit>
               <h3>We Come to You</h3>
@@ -217,7 +230,7 @@ const App = () => {
         </Container>
       </HowItWorksSection>
 
-      <ContactSection id="contact">
+      <ContactSection id='contact'>
         <Container>
           <SectionTitle>Get In Touch</SectionTitle>
           <ContactContent>
@@ -225,79 +238,99 @@ const App = () => {
               <ServiceArea>Serving the Greater Charlotte Area</ServiceArea>
               <Phone>
                 <span>Call or Text:</span>
-                <a href="tel:2019930466">(201) 993-0466</a>
+                <a href='tel:2019930466'>(201) 993-0466</a>
               </Phone>
               <ButtonGroup>
-                <BtnPrimary href="tel:2019930466">Call to Schedule</BtnPrimary>
-                <BtnPrimary href="mailto:cltmobilecarcare@gmail.com">Email to Schedule</BtnPrimary>
+                <BtnPrimary href='tel:2019930466'>Call to Schedule</BtnPrimary>
+                <BtnPrimary href='mailto:cltmobilecarcare@gmail.com'>
+                  Email to Schedule
+                </BtnPrimary>
               </ButtonGroup>
             </ContactInfo>
             <ContactForm onSubmit={handleSubmit}>
               <FormGroup>
                 <FormLabel>Service(s) Needed *</FormLabel>
                 <ServiceCheckboxGroup>
-                  <ServiceCheckboxLabel $selected={formData.services.includes('Oil Change')}>
+                  <ServiceCheckboxLabel
+                    $selected={formData.services.includes('Oil Change')}
+                  >
                     <ServiceCheckbox
-                      type="checkbox"
+                      type='checkbox'
                       checked={formData.services.includes('Oil Change')}
                       onChange={() => toggleService('Oil Change')}
                     />
                     Oil Change
                   </ServiceCheckboxLabel>
-                  <ServiceCheckboxLabel $selected={formData.services.includes('Car Detailing')}>
+                  <ServiceCheckboxLabel
+                    $selected={formData.services.includes('Car Detailing')}
+                  >
                     <ServiceCheckbox
-                      type="checkbox"
+                      type='checkbox'
                       checked={formData.services.includes('Car Detailing')}
                       onChange={() => toggleService('Car Detailing')}
                     />
                     Detailing
                   </ServiceCheckboxLabel>
                 </ServiceCheckboxGroup>
-                {serviceError && <ErrorText>Please select at least one service</ErrorText>}
+                {serviceError && (
+                  <ErrorText>Please select at least one service</ErrorText>
+                )}
               </FormGroup>
               <FormGroup>
                 <FormLabel>Name</FormLabel>
                 <FormInput
-                  type="text"
-                  placeholder="Your name"
+                  type='text'
+                  placeholder='Your name'
                   value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, name: e.target.value })
+                  }
                   required
                 />
               </FormGroup>
               <FormGroup>
                 <FormLabel>Email</FormLabel>
                 <FormInput
-                  type="email"
-                  placeholder="your@email.com"
+                  type='email'
+                  placeholder='your@email.com'
                   value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, email: e.target.value })
+                  }
                   required
                 />
               </FormGroup>
               <FormGroup>
                 <FormLabel>Car Info</FormLabel>
                 <FormInput
-                  type="text"
-                  placeholder="Year, Make, Model (e.g. 2020 Honda Civic)"
+                  type='text'
+                  placeholder='Year, Make, Model (e.g. 2020 Honda Civic)'
                   value={formData.carInfo}
-                  onChange={(e) => setFormData({ ...formData, carInfo: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, carInfo: e.target.value })
+                  }
                   required
                 />
               </FormGroup>
               <FormGroup>
                 <FormLabel>Notes</FormLabel>
                 <FormTextarea
-                  placeholder="Any additional details or questions..."
+                  placeholder='Any additional details or questions...'
                   value={formData.notes}
-                  onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, notes: e.target.value })
+                  }
                 />
               </FormGroup>
-              <SubmitButton type="submit" disabled={status === 'sending'}>
+              <SubmitButton type='submit' disabled={status === 'sending'}>
                 {status === 'sending' ? 'Sending...' : 'Send Request'}
               </SubmitButton>
-              {status === 'success' && <SuccessText>Message sent successfully!</SuccessText>}
-              {status === 'error' && <ErrorText>Failed to send. Please try again.</ErrorText>}
+              {status === 'success' && (
+                <SuccessText>Message sent successfully!</SuccessText>
+              )}
+              {status === 'error' && (
+                <ErrorText>Failed to send. Please try again.</ErrorText>
+              )}
             </ContactForm>
           </ContactContent>
         </Container>
@@ -309,7 +342,7 @@ const App = () => {
         </Container> */}
       </Footer>
     </Root>
-  );
-};
+  )
+}
 
-export default App;
+export default App
